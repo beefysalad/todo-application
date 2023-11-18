@@ -2,12 +2,16 @@ import Button from "@/components/button";
 import Navigation from "@/navigation";
 import theme, { Text } from "@/utils/themes";
 import { ThemeProvider } from "@shopify/restyle";
-import { StyleSheet } from "react-native";
+import { StatusBar, StyleSheet } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Navigation />
+      <SafeAreaProvider>
+        <Navigation />
+        <StatusBar translucent />
+      </SafeAreaProvider>
     </ThemeProvider>
   );
 }
