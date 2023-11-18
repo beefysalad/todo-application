@@ -1,7 +1,9 @@
 import Button from "@/components/button";
 import Navigation from "@/navigation";
+import useUserGlobalStore from "@/store/useUserGlobalStore";
 import theme, { Text } from "@/utils/themes";
 import { ThemeProvider } from "@shopify/restyle";
+import { useEffect } from "react";
 import { StatusBar, StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
