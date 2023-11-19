@@ -1,3 +1,4 @@
+import theme from "@/utils/themes";
 import { ReactNode } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -9,6 +10,7 @@ const SafeAreaWrapper = ({ children }: SafeAreaWrapperProps) => {
     <SafeAreaView
       style={{
         flex: 1,
+        backgroundColor: theme.colors.white,
       }}
     >
       {children}
