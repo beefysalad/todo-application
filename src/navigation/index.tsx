@@ -6,8 +6,6 @@ import { useEffect } from "react";
 const Navigation = () => {
   const { user, updateUser } = useUserGlobalStore();
 
-  console.log(`user`, JSON.stringify(user, null, 2));
-
   useEffect(() => {
     updateUser(null);
     return () => {};
