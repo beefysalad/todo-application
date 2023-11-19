@@ -8,19 +8,21 @@ const createUser = async (req, res) => {
     const checkUser = await User.findOne({ email });
     if (checkUser) {
       return res.status(409).json({
-        message: "User already exists!",
+        message: "User already exists",
       });
     }
     const hashedPassword = await bcrypt.hash(password, 12);
-    await User.create({
+    const user = await User.create({
       name,
       email,
       password: hashedPassword,
     });
     return res.status(200).json({
       message: "User Created!",
+      user,
     });
   } catch (error) {
+    console.log(error, "from server");
     return res.status(404).json({
       message: error.message,
     });
@@ -39,6 +41,7 @@ const login = async (req, res) => {
     }
     const isPassword = await bcrypt.compare(password, checkUser.password);
     if (isPassword) {
+      console.log("YAY");
       const token = getUserToken(checkUser._id);
       return res.status(200).json({
         token,

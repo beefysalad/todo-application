@@ -20,15 +20,23 @@ const {
   getCompletedTasks,
   getTasksForToday,
 } = require("./service/Task/taskService");
-
+const cors = require("cors");
 console.clear();
 
 app.use(express.json());
 
+app.use(cors());
+
 connect();
 
+app.get("/ping", (req, res) => {
+  return res.status(200).json({
+    message: "pong",
+  });
+});
+
 // USER CREATION AND LOGIN (AUTHEN)
-app.put("/create-user", createUser);
+app.post("/create-user", createUser);
 app.post("/login", login);
 
 // Category
@@ -46,6 +54,7 @@ app.patch("/task/status/:id", authMiddleware, updateTaskStatus);
 app.get("/task/category/:id", authMiddleware, getTaskByCategory);
 app.get("/task-completed", authMiddleware, getCompletedTasks);
 app.get("/task-today", authMiddleware, getTasksForToday);
+
 app.listen(port, () => {
   console.log(`Listening to port ${port}`);
 });
